@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Created by: Nathan Carlson
+on Janurary 17, 2018-->
+<html>
+
+<body>
+
+<h1>My Second Google Maps</h1>
+<select id='options' onchange='getMap()'>
+    <option value="New York">New York</option>
+    <option value="Indianapolis">Indianapolis</option>
+    <option value="Orlando">Orlando</option>
+    <option value="Washington D.C.">Washington D.C.</option>
+</select>
+<div id="map" style="width:100%;height:800px"></div>
+
+<script>
+function myMap(lat, long) {
+  if(lat == null){
+    lat = 40.7128;
+  }
+  if(long == null){
+    long = -74.0060;
+  }
+  var mapCanvas = document.getElementById("map");
+  var myCenter = new google.maps.LatLng(lat, long);
+  var mapOptions = {center: myCenter, zoom: 10};
+  var map = new google.maps.Map(mapCanvas,mapOptions);
+  var marker = new google.maps.Marker({
+    position: myCenter,
+    animation: google.maps.Animation.BOUNCE
+  });
+  marker.setMap(map);
+}
+  function getMap(){
+    var e = document.getElementById('options');
+    if(e.value == "New York"){
+      myMap(40.7128, -74.0060);
+    }else if(e.value == "Indianapolis"){
+      myMap(39.768597, -86.162682);
+    }else if(e.value == "Orlando"){
+      myMap(28.5383, -81.3792);
+    }else{
+      myMap(38.9072, -77.0369);
+    }
+  }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQSHcXEdIzUBMRx0NTNevxDqCLLl4hzFs&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>
